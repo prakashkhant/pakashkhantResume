@@ -541,9 +541,11 @@ button:hover{
 
             <!-- BUTTON -->
 
-            <button onclick="downloadResume()">
-                Download Resume
-            </button>
+           <!-- BUTTON -->
+
+<button onclick="downloadPDF()">
+    Download Resume
+</button>
 
         </div>
 
@@ -551,16 +553,40 @@ button:hover{
 
 </div>
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
 <script>
 
-function downloadResume(){
+function downloadPDF(){
 
-    document.title = "prakashkumar-khant-resume";
+    const element = document.querySelector(".resume");
 
-    window.print();
+    const options = {
+
+        margin:0,
+
+        filename:'prakashkumar-khant-resume.pdf',
+
+        image:{
+            type:'jpeg',
+            quality:1
+        },
+
+        html2canvas:{
+            scale:2
+        },
+
+        jsPDF:{
+            unit:'mm',
+            format:'a4',
+            orientation:'portrait'
+        }
+    };
+
+    html2pdf().set(options).from(element).save();
 }
 
 </script>
-
 </body>
 </html>
